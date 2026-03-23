@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compra Confirmada - Obrigado!</title>
+    <!-- Tailwind CSS para estilização rápida e responsiva -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons para ícones minimalistas e modernos -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'Helvetica', 'Arial', 'sans-serif'],
+                    },
+                    colors: {
+                        appleBlue: '#0071e3',
+                        appleBlueHover: '#0077ed',
+                        appleBg: '#f5f5f7',
+                        successGreen: '#34c759'
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Animações suaves de entrada */
+        .fade-in-up {
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-300 { animation-delay: 300ms; }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body class="bg-appleBg text-gray-900 font-sans min-h-screen flex items-center justify-center p-4 sm:p-6 antialiased">
+
+    <!-- Container Principal (Cartão) -->
+    <main class="bg-white max-w-xl w-full rounded-[2.5rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] overflow-hidden fade-in-up">
+        
+        <!-- Conteúdo do Cartão -->
+        <div class="p-8 sm:p-12">
+            
+            <!-- 1. HEAD (CONFIRMAÇÃO IMEDIATA) -->
+            <div class="text-center mb-10">
+                <div class="inline-flex items-center justify-center w-20 h-20 bg-green-50 rounded-full mb-6">
+                    <i data-lucide="check-circle-2" class="w-10 h-10 text-successGreen"></i>
+                </div>
+                <h1 class="text-3xl sm:text-4xl font-semibold tracking-tight text-gray-900 mb-3">
+                    Compra Confirmada!
+                </h1>
+                <p class="text-lg text-gray-500 font-medium">
+                    Seu acesso já foi enviado para o seu e-mail.
+                </p>
+            </div>
+
+            <!-- 2. INSTRUÇÃO CLARA -->
+            <div class="bg-gray-50 rounded-2xl p-6 mb-8 border border-gray-100 fade-in-up delay-100">
+                <div class="flex items-start gap-4">
+                    <div class="mt-1">
+                        <i data-lucide="mail" class="w-6 h-6 text-appleBlue"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-gray-900 mb-1">Verifique sua caixa de entrada</h3>
+                        <p class="text-gray-600 leading-relaxed text-sm sm:text-base">
+                            Verifique seu e-mail agora mesmo. Caso não encontre, confira também a caixa de <strong>spam</strong> ou <strong>promoções</strong>. O seu acesso é imediato e você pode acessar o conteúdo a qualquer momento.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3 & 4. AGRADECIMENTO + TRANSFORMAÇÃO (VISÃO DE FUTURO) -->
+            <div class="space-y-6 mb-10 text-center fade-in-up delay-200">
+                <p class="text-gray-700 leading-relaxed text-lg">
+                    <span class="font-semibold text-gray-900">Parabéns pela sua decisão!</span> Você acaba de dar um passo importante para proporcionar momentos mais especiais e educativos para o seu filho.
+                </p>
+                <div class="h-px w-16 bg-gray-200 mx-auto"></div>
+                <p class="text-gray-600 leading-relaxed">
+                    Esse material vai ajudar você a transformar momentos comuns em experiências incríveis, <strong>diminuindo o uso de telas</strong>, fortalecendo o vínculo familiar e estimulando a criatividade e o desenvolvimento.
+                </p>
+            </div>
+
+            <!-- 5. CALL TO ACTION SUAVE -->
+            <div class="fade-in-up delay-300">
+                <!-- Botão principal -->
+                <button onclick="abrirEmail()" class="w-full bg-green-600 hover:bg-green-600 text-white font-semibold text-lg py-4 px-6 rounded-2xl transition-all duration-200 flex items-center justify-center gap-2 shadow-sm hover:shadow-md transform hover:-translate-y-0.5">
+                    Verificar meu e-mail agora
+                    <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                </button>
+                
+                <!-- Rodapé de segurança -->
+                <div class="mt-6 flex items-center justify-center gap-2 text-sm text-gray-400">
+                    <i data-lucide="shield-check" class="w-4 h-4"></i>
+                    <span>Ambiente 100% seguro e criptografado</span>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        // Inicializar ícones
+        lucide.createIcons();
+
+        // Função do botão (Simulação de abertura de provedor de e-mail ou redirecionamento)
+        function abrirEmail() {
+            // Em um cenário real, você poderia tentar abrir o app de e-mail padrão do usuário
+            // window.location.href = "mailto:"; 
+            
+            // Ou apenas mostrar um alerta amigável na demonstração
+            const btn = document.querySelector('button');
+            const textoOriginal = btn.innerHTML;
+            
+            btn.innerHTML = '<i data-lucide="loader-2" class="w-5 h-5 animate-spin"></i> Abrindo e-mail...';
+            lucide.createIcons();
+            
+            setTimeout(() => {
+                alert("Em um site real, este botão pode abrir o app de e-mail do cliente (Gmail, Outlook, etc) ou levá-lo para a área de membros.");
+                btn.innerHTML = textoOriginal;
+                lucide.createIcons();
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
